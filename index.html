@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Witchunt</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #000000;
+            }
+            canvas {
+                display: block;
+            }
+            @font-face {
+            font-family: "OldEnglish3";
+            src: url("./assets/fonts/OldEnglish.ttf") format("truetype"); 
+        }
+        @font-face {
+            font-family: "Conte";
+            src: url("./assets/fonts/Conte.ttf") format("truetype");
+        }
+        
+        </style>
+    </head>
+    <body>
+         <!-- Font Loader -->
+         <div id="fontLoader" style="font-family: 'OldEnglish3'; position: absolute; left: -1000px; visibility: hidden;">.</div>
+         <div id="fontLoader" style="font-family: 'Conte'; position: absolute; left: -1000px; visibility: hidden;">.</div>
+
+        <script src="../Scripts/phaser.min.js"></script>
+        <script src="../Scripts/game.js " type="module"></script>
+        <script src="../Scripts/scenes/gameScene.js " type="module"></script>
+    </body>
+</html>
