@@ -11,7 +11,7 @@ export class GameOverScene extends Phaser.Scene {
         this.add.text(640, 310, `Score: ${data.score}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
         this.add.text(640, 370, `Coins Collected: ${data.coinsCollected}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
         
-        // Create buttons
+        
         const retryButton = this.createButton(650, 600, 'Retry', () => this.scene.start('GameScene'));
     
         retryButton.setInteractive();
@@ -38,7 +38,7 @@ export class GameOverScene extends Phaser.Scene {
             .on('pointerover', () => button.setStyle({ fill: '#f39c12' }))
             .on('pointerout', () => button.setStyle({ fill: '#fff' }));
         
-        return button; // Return the button
+        return button; 
     }
     
 }

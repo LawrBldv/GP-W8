@@ -400,7 +400,7 @@ export default class GameScene extends Phaser.Scene {
     
 
     showReminder() {
-        const reminderText = this.add.text(this.player.x-300, this.player.y - 100, 'You are yet to remember. Collect the scraps', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setOrigin(0.5);
+        const reminderText = this.add.text(this.player.x-300, this.player.y - 100, 'You are yet to remember. Collect all 12 scraps', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setOrigin(0.5);
         this.time.addEvent({
             delay: 2000,
             callback: () => {

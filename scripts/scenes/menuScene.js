@@ -14,7 +14,7 @@ class MainMenuScene extends Phaser.Scene {
         
         this.add.image(640, 360, 'newspaper');
 
-        // Theme Music
+        
         this.menuMusic = this.sound.add('menuMusic', { loop: true, volume: 0.3 });
         this.menuMusic.play();
         const playButton = this.add.text(790, 250, 'Start the Game', { fontFamily: 'OldEnglish3', fontSize: '50px', fill: '#8B0000' }).setOrigin(0.5);
