@@ -1,6 +1,6 @@
-export default class EndScene2 extends Phaser.Scene {
+export default class EndScene3 extends Phaser.Scene {
     constructor() {
-        super('EndScene2');
+        super('EndScene3');
     }
 
     preload() {
@@ -8,6 +8,8 @@ export default class EndScene2 extends Phaser.Scene {
     }
 
     create(data) {
+
+        this.add.text(640, 200, 'You have remembered.', { fontFamily: 'OldEnglish3', fontSize: '50px', fill: '#8B0000' }).setOrigin(0.5);
         this.add.text(640, 310, `Score: ${data.score}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
         this.add.text(640, 370, `Paper Scraps: ${data.coinsCollected}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
         
@@ -19,15 +21,6 @@ export default class EndScene2 extends Phaser.Scene {
             this.scene.stop('GameOverScene');
             this.scene.start('GameScene');
             const gameScene = this.scene.get('GameScene');
-            if (gameScene) {
-                gameScene.resetState();
-            }
-        });
-    
-        const nextButton = this.createButton(400, 600, 'Next', () => {
-            this.scene.stop('EndScene');
-            this.scene.start('GameScene3');
-            const gameScene = this.scene.get('GameScene3');
             if (gameScene) {
                 gameScene.resetState();
             }

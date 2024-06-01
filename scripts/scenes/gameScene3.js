@@ -35,7 +35,7 @@ export default class GameScene3 extends Phaser.Scene {
 
 
 
-        this.load.audio('backgroundMusic', './assets/Sounds/Music/Theme.mp3');
+        this.load.audio('backgroundMusic3', './assets/Sounds/Music/Theme3.mp3');
         this.load.audio('chase', './assets/Sounds/Music/Chase.mp3');
         this.load.audio('ScrapSound', '../assets/Sounds/SFX/Rustle.mp3');
         this.load.audio('Scream', '../assets/Sounds/SFX/Scream.mp3');
@@ -45,7 +45,7 @@ export default class GameScene3 extends Phaser.Scene {
         this.load.spritesheet('interactPromptAnim', '../assets/images/sprites/TriggerAnim.png', { frameWidth: 80, frameHeight: 78 });
         this.load.image('interactPrompt', '../assets/images/sprites/Trigger.png');
         this.load.image('tape', '../assets/images/sprites/Tape.png');
-        this.load.image('endingImage', '../assets/images/sprites/L1Letter.png');
+        this.load.image('endImg3', '../assets/images/sprites/Letter3.png');
         this.load.image('someObjectImage', '../assets/images/sprites/Tape.png');
         this.load.image('doorPaper', '../assets/images/sprites/doorPaper.png');
     }
@@ -98,7 +98,7 @@ export default class GameScene3 extends Phaser.Scene {
         });
 
         
-        this.backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.3 });
+        this.backgroundMusic = this.sound.add('backgroundMusic3', { loop: true, volume: 0.3 });
         this.backgroundMusic.play();
 
         
@@ -188,7 +188,7 @@ export default class GameScene3 extends Phaser.Scene {
 
         
         this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
-        this.coinsText = this.add.text(16, 50, 'Coins: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
+        this.coinsText = this.add.text(16, 50, 'Paper Scraps: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
 
         
         this.cameras.main.startFollow(this.player, false, 0.1, 0, 0, 140);
@@ -305,7 +305,8 @@ export default class GameScene3 extends Phaser.Scene {
     gameOver() {
 
         console.log("Player went out of bounds and died");
-        this.scene.start('GameOverScene', { score: this.score, coinsCollected: this.coinsCollected});
+        const levelKey = 'GameScene3'; // Assuming the key for GameScene is 'GameScene'
+        this.scene.start('GameOverScene', { levelKey: levelKey, score: this.score, coinsCollected: this.coinsCollected });
         this.sound.stopAll();
         this.Scream = this.sound.add('Scream', { loop: false, volume: 0.5 });
         this.Scream.play();
@@ -392,12 +393,12 @@ collectCoin(player, coin) {
     coin.disableBody(true, true);
 
     // Check if the coin has a custom property or tag to identify it
-    if (coin.customProperty === '2') {
-        this.showMessage('caged voices... they long to sing.');
+    if (coin.customProperty === '1') {
+        this.showMessage('Get the note above the altar.');
     }
 
     this.coinsCollected += 1;
-    this.coinsText.setText('Coins: ' + this.coinsCollected);
+    this.coinsText.setText('Paper Scraps: ' + this.coinsCollected);
     this.score += 10;
     this.scoreText.setText('Score: ' + this.score);
 
@@ -415,6 +416,8 @@ collectCoin(player, coin) {
         this.chase = this.sound.add('chase', { loop: false, volume: 5 });
         this.chase.play();
         this.spawnEnemy();
+        this.cameras.main.shake(2000, 0.02);
+        this.cameras.main.shake(19000, 0.005);
 
         
     }
@@ -446,9 +449,9 @@ collectCoin(player, coin) {
         this.cameras.main.once('camerafadeoutcomplete', () => {
             this.cameras.main.fadeIn(1000, 0, 0, 0);
 
-            const endingImage = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'endingImage');
+            const endingImage = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'endImg3');
             endingImage.setOrigin(0.5).setScrollFactor(0);
-            //endingImage.setDepth(20);
+            endingImage.setDepth(20);
 
             const nextButton = this.add.text(this.cameras.main.centerX + 250, this.cameras.main.centerY + 300, 'Next', {
                 fontSize: '32px',
@@ -460,7 +463,7 @@ collectCoin(player, coin) {
             nextButton.on('pointerdown', () => {
                 this.sound.stopAll();
                 this.scene.stop('GameScene3');
-                this.scene.start('EndScene', { score: this.score, coinsCollected: this.coinsCollected});
+                this.scene.start('EndScene3', { score: this.score, coinsCollected: this.coinsCollected});
                 
             });
 

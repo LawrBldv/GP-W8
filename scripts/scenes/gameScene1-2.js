@@ -30,7 +30,7 @@ export default class GameScene12 extends Phaser.Scene {
         this.load.image('cage', '../assets/images/sprites/Cage.png');
 
 
-        this.load.audio('backgroundMusic', './assets/Sounds/Music/Theme.mp3');
+        this.load.audio('backgroundMusic2', './assets/Sounds/Music/Theme2.mp3');
         this.load.audio('ScrapSound', '../assets/Sounds/SFX/Rustle.mp3');
         this.load.audio('Scream', '../assets/Sounds/SFX/Scream.mp3');
         this.load.audio('Piano', '../assets/Sounds/SFX/DissonantPiano.mp3');
@@ -43,6 +43,8 @@ export default class GameScene12 extends Phaser.Scene {
         this.load.image('someObjectImage', '../assets/images/sprites/Tape.png');
         this.load.image('doorPaper', '../assets/images/sprites/doorPaper.png');
         this.load.image('Newspaper2', '../assets/images/sprites/L1Letter.png');
+        this.load.image('checkpoint', '../assets/images/sprites/checkpoint.png');
+    
     }
 
     create() {
@@ -53,6 +55,10 @@ export default class GameScene12 extends Phaser.Scene {
         this.midground = this.add.tileSprite(0, 0, 8960, 720, 'midground2').setOrigin(0, 0);
         this.mist = this.add.tileSprite(0, 0, 8960, 720, 'mist2').setOrigin(0, 0);
         this.mist.setDepth(1);
+
+        const checkpoint = this.physics.add.sprite(200, 450, 'checkpoint');
+        checkpoint.setImmovable(true);
+        checkpoint.body.allowGravity = false;
     
         // Add player sprite
         this.player = this.physics.add.sprite(200, 500, 'player1');
@@ -87,7 +93,7 @@ export default class GameScene12 extends Phaser.Scene {
         });
     
         // Play background music
-        this.backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.3 });
+        this.backgroundMusic = this.sound.add('backgroundMusic2', { loop: true, volume: 0.3 });
         this.backgroundMusic.play();
     
         // Load the tilemap and tileset
@@ -155,7 +161,7 @@ export default class GameScene12 extends Phaser.Scene {
     
         // Setup score and coins text
         this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
-        this.coinsText = this.add.text(16, 50, 'Coins: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
+        this.coinsText = this.add.text(16, 50, 'Paper Scraps: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
     
         // Setup camera
         this.cameras.main.startFollow(this.player, false, 0.1, 0, 0, 140);

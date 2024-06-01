@@ -8,6 +8,7 @@ import GameOverScene from '../scripts/scenes/gameOverScene.js';
 import CreditsScene from '../scripts/scenes/creditScene.js';
 import EndScene from '../scripts/scenes/EndScene.js';
 import EndScene2 from '../scripts/scenes/EndScene2.js';
+import EndScene3 from '../scripts/scenes/EndScene3.js';
 
 const config = {
     type: Phaser.AUTO,
@@ -21,7 +22,7 @@ const config = {
             debug: false
         }   
     },
-    scene: [MainMenuScene, GameScene, GameScene12, GameScene2, GameScene3, GameOverScene, CreditsScene, EndScene, EndScene2]
+    scene: [MainMenuScene, GameScene, GameScene12, GameScene2, GameScene3, GameOverScene, CreditsScene, EndScene, EndScene2, EndScene3]
 };
 
 const game = new Phaser.Game(config);

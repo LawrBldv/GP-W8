@@ -9,7 +9,7 @@ export default class EndScene extends Phaser.Scene {
 
     create(data) {
         this.add.text(640, 310, `Score: ${data.score}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
-        this.add.text(640, 370, `Coins Collected: ${data.coinsCollected}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
+        this.add.text(640, 370, `Paper Scraps: ${data.coinsCollected}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
         
         
         const retryButton = this.createButton(650, 600, 'Retry', () => this.scene.start('GameScene'));

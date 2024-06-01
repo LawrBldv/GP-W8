@@ -3,39 +3,25 @@ export class GameOverScene extends Phaser.Scene {
         super({ key: 'GameOverScene' });
     }
 
-    preload() {
-        
+    init(data) {
+        this.levelKey = data.levelKey; // Store the key of the gameplay scene
     }
 
     create(data) {
         this.add.text(640, 310, `Score: ${data.score}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
-        this.add.text(640, 370, `Coins Collected: ${data.coinsCollected}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
+        this.add.text(640, 370, `Paper Scraps: ${data.coinsCollected}`, { fontFamily: 'OldEnglish3', fontSize: '32px', fill: '#FFFFFF' }).setOrigin(0.5);
         
-        
-        const retryButton = this.createButton(650, 600, 'Retry', () => this.scene.start('GameScene'));
-    
+        const retryButton = this.createButton(650, 600, 'Retry', () => this.scene.restart({ levelKey: this.levelKey }));
         retryButton.setInteractive();
-        retryButton.on('pointerdown', () => {
-            
-            this.scene.restart();
-            const gameScene = this.scene.get('GameScene');
-            const gameScene1 = this.scene.get('GameScene12');
-            const gameScene2 = this.scene.get('GameScene2');
-            const gameScene3 = this.scene.get('GameScene3');
 
-            if (gameScene) {
-                gameScene.resetState();
-            } else if (gameScene2){
-                gameScene2.resetState();
-            } else if (gameScene3){
-                gameScene3.resetState();
-            }
+        retryButton.on('pointerdown', () => {
+            this.scene.stop(this.levelKey); // Stop the current gameplay scene
+            this.scene.start(this.levelKey); // Restart the gameplay scene
             this.scene.stop('GameOverScene');
         });
+
         this.createButton(900, 600, 'Main Menu', () => this.scene.start('MainMenuScene'));
     }
-    
-    
     
     createButton(x, y, text, callback) {
         const button = this.add.text(x, y, text, { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' })
@@ -47,7 +33,6 @@ export class GameOverScene extends Phaser.Scene {
         
         return button; 
     }
-    
 }
 
 export default GameOverScene;

@@ -31,7 +31,7 @@ export default class GameScene2 extends Phaser.Scene {
         this.load.image('cage', '../assets/images/sprites/Cage.png');
 
 
-        this.load.audio('backgroundMusic', './assets/Sounds/Music/Theme.mp3');
+        this.load.audio('backgroundMusic2', './assets/Sounds/Music/Theme2.mp3');
         this.load.audio('ScrapSound', '../assets/Sounds/SFX/Rustle.mp3');
         this.load.audio('Scream', '../assets/Sounds/SFX/Scream.mp3');
         this.load.audio('Piano', '../assets/Sounds/SFX/DissonantPiano.mp3');
@@ -92,7 +92,7 @@ export default class GameScene2 extends Phaser.Scene {
         });
 
         
-        this.backgroundMusic = this.sound.add('backgroundMusic', { loop: true, volume: 0.3 });
+        this.backgroundMusic = this.sound.add('backgroundMusic2', { loop: true, volume: 0.3 });
         this.backgroundMusic.play();
 
         
@@ -175,7 +175,7 @@ export default class GameScene2 extends Phaser.Scene {
 
         
         this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
-        this.coinsText = this.add.text(16, 50, 'Coins: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
+        this.coinsText = this.add.text(16, 50, 'Paper Scraps: 0', { fontSize: '32px', fontFamily: 'OldEnglish3', fill: '#fff' }).setScrollFactor(0);
 
         
         this.cameras.main.startFollow(this.player, false, 0.1, 0, 0, 140);
@@ -281,7 +281,8 @@ export default class GameScene2 extends Phaser.Scene {
     gameOver() {
 
         console.log("Player went out of bounds and died");
-        this.scene.start('GameOverScene', { score: this.score, coinsCollected: this.coinsCollected});
+        const levelKey = 'GameScene2'; // Assuming the key for GameScene is 'GameScene'
+        this.scene.start('GameOverScene', { levelKey: levelKey, score: this.score, coinsCollected: this.coinsCollected });
         this.sound.stopAll();
         this.Scream = this.sound.add('Scream', { loop: false, volume: 0.5 });
         this.Scream.play();
@@ -399,7 +400,7 @@ collectCoin(player, coin) {
     }
 
     this.coinsCollected += 1;
-    this.coinsText.setText('Coins: ' + this.coinsCollected);
+    this.coinsText.setText('Paper Scraps: ' + this.coinsCollected);
     this.score += 10;
     this.scoreText.setText('Score: ' + this.score);
 
