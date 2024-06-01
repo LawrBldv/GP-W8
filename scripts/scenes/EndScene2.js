@@ -1,6 +1,6 @@
-export class GameOverScene extends Phaser.Scene {
+export default class EndScene2 extends Phaser.Scene {
     constructor() {
-        super({ key: 'GameOverScene' });
+        super('EndScene2');
     }
 
     preload() {
@@ -16,22 +16,24 @@ export class GameOverScene extends Phaser.Scene {
     
         retryButton.setInteractive();
         retryButton.on('pointerdown', () => {
-            
-            this.scene.restart();
+            this.scene.stop('GameOverScene');
+            this.scene.start('GameScene');
             const gameScene = this.scene.get('GameScene');
-            const gameScene1 = this.scene.get('GameScene12');
-            const gameScene2 = this.scene.get('GameScene2');
-            const gameScene3 = this.scene.get('GameScene3');
-
             if (gameScene) {
                 gameScene.resetState();
-            } else if (gameScene2){
-                gameScene2.resetState();
-            } else if (gameScene3){
-                gameScene3.resetState();
             }
-            this.scene.stop('GameOverScene');
         });
+    
+        const nextButton = this.createButton(400, 600, 'Next', () => {
+            this.scene.stop('EndScene');
+            this.scene.start('GameScene3');
+            const gameScene = this.scene.get('GameScene3');
+            if (gameScene) {
+                gameScene.resetState();
+            }
+        });
+        
+        
         this.createButton(900, 600, 'Main Menu', () => this.scene.start('MainMenuScene'));
     }
     
@@ -49,5 +51,3 @@ export class GameOverScene extends Phaser.Scene {
     }
     
 }
-
-export default GameOverScene;

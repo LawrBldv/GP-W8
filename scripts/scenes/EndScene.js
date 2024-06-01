@@ -24,7 +24,16 @@ export default class EndScene extends Phaser.Scene {
             }
         });
     
-        this.createButton(400, 600, 'Next', () => console.log('no next level yet'));
+        const nextButton = this.createButton(400, 600, 'Next', () => {
+            this.scene.stop('EndScene');
+            this.scene.start('GameScene12');
+            const gameScene = this.scene.get('GameScene12');
+            if (gameScene) {
+                gameScene.resetState();
+            }
+        });
+        
+        
         this.createButton(900, 600, 'Main Menu', () => this.scene.start('MainMenuScene'));
     }
     

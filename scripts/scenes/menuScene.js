@@ -26,8 +26,8 @@ class MainMenuScene extends Phaser.Scene {
 
         
         playButton.setInteractive().on('pointerdown', () => {
-            this.scene.start('GameScene');
-            const gameScene = this.scene.get('GameScene');
+            this.scene.start('GameScene2');
+            const gameScene = this.scene.get('GameScene2');
             this.sound.stopAll();
             if (gameScene) {
                 gameScene.resetState();
